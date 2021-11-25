@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2021 Hypergud Portfolio</title>
+    <!-- about -->
+
+    <link rel="stylesheet" href="../source/font/Pretendard-1.1.1/web/static/pretendard.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style_about.css">
+    <style>
+        h1{
+            font-family: 'Pretendard';
+            font-weight: 500;
+            font-size: 25px;
+            position: absolute;
+            text-align: left;
+            background-color: transparent;
+            letter-spacing :0.5px;
+            
+            margin-top: 25px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1 class="logo">
+            <a href="../index.html">hypergud</a>
+        </h1>
+    </div>
+
+  <div id="fullpage">
+    <div class="section " id="section0">
+        <div class="sec0_left">
+            <div class="gudpic">
+                <img src="../source/img/me.jpg" alt="">
+            </div>
+        </div>
+        <div class="sec0_right">
+            <!-- <div class="workmedia">
+                <div id="outer">
+                    <video id="myVideo" loop muted data-autoplay style="height: 100%; position: relative;right: 300px; ">
+                        <source src="../source/vid/a2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div> -->
+            <!-- <p class="halftone">hypergud</p> -->
+            <h2>hypergud</h2>
+            <p>Gud, Media Contents Developer</p>    
+                    
+        </div>
+		<div class="layer">
+		</div>
+	</div>
+      
+  </div>
+
+
+  <div id="bt" class="contactbt">
+    <h2>CONTACT</h2>
+</div>
+
+<div class="contact">
+  <h6 class="c_title">Contact me!</h6>
+  <h6 class="c_content">+82 10-9390-5870</h6>
+  <h6 class="c_content">eowk3130@naver.com</h6>
+  <h6 class="c_content">wonesis24@gmail.com</h6>
+</div>
+
+  <div id="bt_p" OnClick="location.href ='./work_main.html'">
+    <h2>WORKS</h2>
+</div>
+
+  <div id="footer">
+    <div class="menu_left">
+        <table class="type01">
+            <tr style="height: 35px;">
+                <td><h2 OnClick="location.href ='./about.html'">ABOUT</h2></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="em"><p>Explore More!</p></td>
+                <td class="link"><a href="https://github.com/hypergud" target="_blank"><h5>GITHUB</h5></a></td>
+                <td class="link"><a href="https://www.instagram.com/gud.raw/" target="_blank"><h5>INSTAGRAM</h5></a></td>
+                <td class="link"><a href="https://www.youtube.com/channel/UCjd61MWhLA8Xslu83W6uCYw" target="_blank"><h5>YOUTUBE</h5></a></td>
+                <td style="text-align: right;padding-right: 30px;"><p>@ 2021 hypergud Portfolio. All Rights Reserved.</p></td>
+            </tr>
+          </table>
+    </div>
+    <!-- <div class="menu_right">
+        <table class="type02">
+            <tr style="height: 35px;">
+                <td><h2 OnClick="location.href ='./work_main.html'">WORKS</h2></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="w-menu" style="padding-left: 40px;" ><a href="https://github.com/hypergud" target="_blank"><h4 class="wm01">Unity</h4></a></td>
+                <td class="w-menu"><a class="wm02" href="https://www.instagram.com/gud.raw/" target="_blank"><h4 class="wm02">Touchdesigner</h4></a></td>
+                <td class="w-menu"><a class="wm01" href="https://www.youtube.com/channel/UCjd61MWhLA8Xslu83W6uCYw" target="_blank"><h4 class="wm03">Web</h4></a></td>
+            </tr>
+          </table>
+    </div> -->
+</div>
+  
+  
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
+  <script type="text/javascript">
+      var myFullpage = new fullpage('#fullpage', {
+          sectionsColor: ['#000000']
+      });
+  </script>
+
+  <script>
+    $( document ).ready( function() {
+      $( '.contactbt' ).click( function() {
+        $( '.contact' ).slideToggle();
+      } );
+    } );
+  </script>
+  </body>
+  </html>
