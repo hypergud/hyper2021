@@ -379,6 +379,15 @@
             line-height: 140px; */
         }
 
+        p{
+            text-align: left;
+            color: #fff;
+            margin: 50px;
+
+            font-family: Myopium;
+            font-size: 100px;
+        }
+
         /* @media (min-width:768px) and (max-width:1080px) {
             .sec0_left{
                 width: 100%;
