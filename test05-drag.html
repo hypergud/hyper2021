@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+	box-sizing: border-box;
+	--color-size: 200px;
+	outline: none;
+}
+
+body {
+	font-family: "Arial", sans-serif;
+	text-transform: uppercase;
+	background: #f4d1cc;
+	color: #343434;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	/* 	padding: 50px; */
+	justify-content: center;
+	overflow: hidden;
+}
+
+details {
+	min-width: var(--color-size);
+	height: calc((var(--color-size) / 2) * 3);
+	position: relative;
+	width: var(--color-size);
+	margin: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	user-select: none;
+	text-transform: uppercase;
+	font-family: "Arial", sans-serif;
+}
+
+.color-title {
+	pointer-events: none;
+}
+
+summary {
+	width: 100%;
+	height: var(--color-size);
+	cursor: pointer;
+}
+
+.color-title,
+.color-codes {
+	background: white;
+	padding: 15px;
+	height: calc((var(--color-size)) / 2);
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+.color-title:before,
+.color-codes:before {
+	position: absolute;
+	font-size: 26px;
+	letter-spacing: -1px;
+	font-weight: 800;
+}
+
+.color-title:before {
+	content: "pantone";
+}
+
+.color-codes:before {
+	content: "hex";
+}
+
+details > summary::-webkit-details-marker {
+	display: none;
+	color: transparent;
+}
+
+details > summary.color::marker {
+	color: transparent;
+}
+
+h1 {
+	margin-top: 30px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+#desc {
+	background: #fff;
+	z-index: 100;
+	padding: 20px;
+}
+
+#desc ul {
+	list-style-type: none;
+	padding-left: 15px;
+}
+
+#desc li::before {
+	content: "•";
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+#desc li:nth-child(1):before {
+	color: #a22452;
+}
+
+#desc li:nth-child(2):before {
+	color: #5487a4;
+}
+
+#desc li:nth-child(3):before {
+	color: #e7aa56;
+}
+
+#desc li {
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+#desc summary {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <details id="desc">
+            <summary>
+                <ul>
+                    <li>Click on color chip to toggle between Pantone color and Hex value</li>
+                    <li>Drag color chips to rearrange</li>
+                    <li>Refresh for new colors</li>
+                    <ul>
+            </summary>
+        </details>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        // credit to https://codepen.io/jackcranston/pen/GdvYwd for random pantone color generator snippet
+
+const target = document.querySelector(".container");
+var colorCount = 100; // change this to choose number of colors
+$(document).ready(function () {
+	$(".container").hide(0).delay(500).fadeIn(500);
+});
+fetch(
+	"https://raw.githubusercontent.com/Margaret2/pantone-colors/master/pantone-colors.json"
+)
+	.then((res) => {
+		return res.json();
+	})
+	.then((data) => {
+		for (i = 0; i < colorCount; i++) {
+			var randNum = Math.ceil(Math.random() * data.names.length);
+			createColor(data, randNum);
+			scatterCards();
+		}
+		show(0);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+
+function createColor(colors, randNum) {
+	target.innerHTML += `<details>
+  <summary style="background:${colors.values[randNum]}" class="color">
+  <div class="color-title">
+  <h1>${colors.names[randNum]}</h1>
+</div>
+</summary>
+<div class="color-codes"><h1>${colors.values[randNum]}</h1>
+</div>
+</details>`;
+}
+
+function show(i) {
+	var boxes = document.querySelectorAll("details");
+	if (i < colorCount) {
+		setTimeout(function () {
+			boxes[i].classList.add("active");
+			i++;
+			show(i);
+		}, 100);
+	}
+}
+
+function scatterCards() {
+	$("details")
+		.each(function () {
+			var rNum = Math.random() * 50 - 2;
+			rNum *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+			var x = Math.random() * 50 - 5;
+			var y = Math.random() * 50 - 5;
+			x *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+			y *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+
+			$(this).css({
+				"-webkit-transform": "rotate(" + rNum + "2deg)",
+				"-moz-transform": "rotate(" + rNum + "2deg)",
+				top: x,
+				left: y
+			});
+		})
+		.draggable({ stack: "details" });
+}
+
+    </script>
+</body>
+</html>

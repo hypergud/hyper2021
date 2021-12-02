@@ -27,6 +27,7 @@
 </head>
 
 <body>
+    <!-- <audio autoplay id="bgm" src="../source/audio/Acid - Jeremy Black.mp3"></audio> -->
     <div id="header">
         <h1 class="logo">
             <a href="../index.html">hypergud</a>
@@ -34,22 +35,41 @@
     </div>
 
   <div id="fullpage">
+    
     <div class="section " id="section0">
+        
         <div class="sec0_left">
-            <div class="gudpic">
-                <img src="../source/img/me.jpg" alt="">
+            <div class="gudpic"  onclick="play01()" >
+                <!-- <img src="../source/img/me.jpg" alt=""> -->
+                <div id="outer">
+                    <video id="myVideo" loop muted data-autoplay style="height: 107%; position: relative;right: 360px; ">
+                        <source src="../source/vid/about-test.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </div>
         <div class="sec0_right">
-            <!-- <div class="workmedia">
-                <div id="outer">
-                    <video id="myVideo" loop muted data-autoplay style="height: 100%; position: relative;right: 300px; ">
-                        <source src="../source/vid/a2.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div> -->
-            <!-- <p class="halftone">hypergud</p> -->
-            <!-- <p>Gud<br>Media Contents Developer</p>     -->
+            <div class="draggable drag01" class="ui-widget-content">
+                <img src="../source/img/png/u202.png" />
+            </div>
+            <div   onclick="play02()"  class="draggable drag02" class="ui-widget-content">
+                <img src="../source/img/png/hypergud.png" />
+            </div>
+            <div class="draggable drag03" class="ui-widget-content">
+                <img src="../source/img/png/button_wink.png" />
+            </div>
+            <div class="draggable drag04" class="ui-widget-content">
+                <img src="../source/img/png/mini04.png" />
+            </div>
+            <div class="draggable drag05" class="ui-widget-content">
+                <img src="../source/img/png/oculus_hmd.png" />
+            </div>
+            <div class="draggable drag06" class="ui-widget-content">
+                <img src="../source/img/png/oculus_left_c.png" />
+            </div>
+            <div class="draggable drag07" class="ui-widget-content">
+                <img src="../source/img/png/oculus_right_c.png" />
+            </div>
                     
         </div>
 		<div class="layer">
@@ -60,14 +80,15 @@
 
 
   <div id="bt" class="contactbt">
-    <h2>CONTACT</h2>
+    <h2 class="onbt">CONTACT</h2>
+    <h2 class="offbt" style="position: relative;top:-100px;display: none;">X</h2>
 </div>
 
 <div class="contact">
-  <h6 class="c_title">Contact me!</h6>
-  <h6 class="c_content">+82 10-9390-5870</h6>
-  <h6 class="c_content">eowk3130@naver.com</h6>
-  <h6 class="c_content">wonesis24@gmail.com</h6>
+  <h6 class="c_title" style="cursor:inherit;">Contact me!</h6>
+  <h6 class="c_content" onclick="copyToClipboard('+82 10-9390-5870');">+82 10-9390-5870</h6>
+  <h6 class="c_content" onclick="copyToClipboard('eowk3130@naver.com');">eowk3130@naver.com</h6>
+  <h6 class="c_content" onclick="copyToClipboard('wonesis24@gmail.com');">wonesis24@gmail.com</h6>
 </div>
 
   <div id="bt_p" OnClick="location.href ='./work_main.html'">
@@ -90,36 +111,82 @@
             </tr>
           </table>
     </div>
-    <!-- <div class="menu_right">
-        <table class="type02">
-            <tr style="height: 35px;">
-                <td><h2 OnClick="location.href ='./work_main.html'">WORKS</h2></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="w-menu" style="padding-left: 40px;" ><a href="https://github.com/hypergud" target="_blank"><h4 class="wm01">Unity</h4></a></td>
-                <td class="w-menu"><a class="wm02" href="https://www.instagram.com/gud.raw/" target="_blank"><h4 class="wm02">Touchdesigner</h4></a></td>
-                <td class="w-menu"><a class="wm01" href="https://www.youtube.com/channel/UCjd61MWhLA8Xslu83W6uCYw" target="_blank"><h4 class="wm03">Web</h4></a></td>
-            </tr>
-          </table>
-    </div> -->
 </div>
-  
+<audio id='audio_play' src='../source/audio/test02.mp3'></audio> 
+<audio id='audio_play2' src='../source/audio/test03.mp3'></audio> 
+<script type="text/javascript"> 
+
+var vid = document.getElementById("bgm");
+vid.volume = 0.2;
+
+function play01() { 
+    var audio = document.getElementById('audio_play'); 
+    if (audio.paused) { 
+        audio.play(); 
+    }else{ 
+        audio.pause(); 
+        audio.currentTime = 0 
+    } 
+} ;
+
+function play02() { 
+    var audio02 = document.getElementById('audio_play2'); 
+    if (audio02.paused) { 
+        audio02.play(); 
+    }else{ 
+        audio02.pause(); 
+        audio02.currentTime = 0 
+    } 
+}
+</script>
   
   <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
   <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
   <script type="text/javascript">
       var myFullpage = new fullpage('#fullpage', {
           sectionsColor: ['#000000']
       });
   </script>
+<script>
+    $( function() {
 
-  <script>
+        var css_test_idx = 10;
+
+        
+      $( ".draggable" ).draggable().css( 'cursor', 'move' )
+    .mousedown(function(){ // mousedown 이벤트 생성
+        $(this).css('z-index', css_test_idx); // 클릭한 이미지만 z-index 증가시킴
+        css_test_idx++;
+        // 그러면 이미지가 겹칠경우 클릭한 것이 항상 위에 표시됨
+    });;
+
+
+//     $('.drag01').each(function(){
+//         $(this).css({"left": Math.random() * window.outerWidth , "top": Math.random() * window.outerHeight}).textillate();
+// });
+    } );
+    </script>
+<script>
     $( document ).ready( function() {
+        textchange = false;
       $( '.contactbt' ).click( function() {
         $( '.contact' ).slideToggle();
+        if(textchange){
+        textchange = false;
+        $('.onbt').text('CONTACT');
+        }else{
+        textchange = true;
+        $('.onbt').text('CLOSE');
+        }
+
       } );
+    
+      
+    
+    
     } );
   </script>
   </body>
