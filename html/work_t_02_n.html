@@ -1,120 +1,795 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2021 Hypergud Portfolio</title>
-    <!-- about -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2021 Hypergud Portfolio</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="../source/fullPage.js-master/fullPage.js-master/dist/examples.css" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../source/font/Pretendard-1.1.1/web/static/pretendard.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style_work.css">
     <style>
-        h1{
+        *{
             font-family: 'Pretendard';
+        }
+
+/* Style for our header texts
+* --------------------------------------- */
+#header h1{
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-size: 25px;
+    position: absolute;
+    text-align: left;
+    background-color: transparent;
+    letter-spacing :0.5px;
+    margin-top: 25px;
+    margin-left: 30px;
+}
+
+#header a{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+     	/* Fixed header and footer.
+	* --------------------------------------- */
+	#header, #footer{
+		position:fixed;
+		/* height: 50px; */
+		display:block;
+		width: 100%;
+		/* background: rgb(255, 255, 255); */
+		z-index:9;
+		text-align:center;
+		/* color: #000000; */
+        /* color: #fff; */
+		/* padding: 20px 0 0 0; */
+	}
+
+	#header{
+		top:0px;
+	}
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section{
+    text-align:center;
+    overflow: hidden;
+}
+
+#myVideo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+     background-color: black; /* in case the video doesn't fit the whole page*/
+      /* background-image:  */
+      /* our video */
+      background-position: center center;
+      background-size: contain;
+       object-fit: cover; /*cover video background */
+       z-index:3;
+       filter: brightness(40%);
+}
+
+
+
+/* Layer with position absolute in order to have it over the video
+* --------------------------------------- */
+#section0 .layer{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    left: 0;
+    top: 43%;
+
+    /*
+    * Preventing flicker on some browsers
+    * See http://stackoverflow.com/a/36671466/1081396  or issue #183
+    */
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+/*solves problem with overflowing video in Mac with Chrome */
+#section0{
+    overflow: hidden;
+}
+
+
+/* Bottom menu
+* --------------------------------------- */
+#infoMenu li a {
+    color: #fff;
+}
+
+
+/* Hiding video controls
+* See: https://css-tricks.com/custom-controls-in-html5-video-full-screen/
+* --------------------------------------- */
+/* video::-webkit-media-controls {
+  display:none !important;
+} */
+
+#bt_p{
+            /* position: relative; */
+            /* position: fixed;
+            top: 0;
+            left: 200px;
+            margin-top: 27px;
+            margin-left: 30px; */
+
+            cursor:pointer;
+            z-index: 10;
+        }
+
+        #bt_p h2{
+            /* position: fixed; */
+            margin: auto auto;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 23px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        
+.menu_accordion {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    /* right: -1200px; */
+    margin-top: 27px;
+    margin-left: 30px;
+  width: 50%;
+  max-width: 360px;
+  margin: 30px auto 20px;
+  /* background: rgba(0, 0, 0, 0.096); */
+  text-align: left;
+  border-bottom: 2px solid rgba(153, 153, 153, 0.4);
+  /* border-width: 50%; */
+}
+
+/* .accordion:hover{
+      border-bottom: 2px solid rgba(153, 153, 153, 0.4);
+} */
+
+.menu_accordion .link {
+  cursor: pointer;
+  display: block;
+  /* padding: 15px 15px 0px 0px; */
+  padding-bottom: 5px;
+  color: #4D4D4D;
+  font-size: 14px;
+  font-weight: 600;
+  /* border-bottom: 1px solid rgba(204, 204, 204, 0.623); */
+  /* border-width: 50%; */
+  position: relative;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+  vertical-align: middle;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.menu_accordion li:last-child .link { border-bottom: 0; }
+
+.menu_accordion li i {
+  position: absolute;
+  top: 16px;
+  top: 6px;
+  left: 12px;
+  font-size: 18px;
+  color: rgba(204, 204, 204, 0.623);
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.menu_accordion li i.fa-chevron-down {
+  right: 5px;
+  top: 3px;
+  left: auto;
+  font-size: 15px;
+}
+
+.menu_accordion li.open{
+    border-bottom: 1px solid rgb(153, 153, 153);
+    padding-bottom: 10px;
+}
+
+.menu_accordion li.open i { 
+    color: rgb(211, 211, 211); 
+}
+
+.menu_accordion li.open i.fa-chevron-down {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/**
+ * Submenu
+ -----------------------------*/
+
+
+.submenu {
+  display: none;
+  /* background: #444359; */
+  font-size: 14px;
+}
+
+/* .submenu li { border-bottom: 1px solid #353535; } */
+
+.submenu a {
+  display: block;
+  text-decoration: none;
+  color: #d9d9d9;
+  padding: 3px;
+  padding-left: 0px;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.submenu .menu01 a:hover {
+  background: #ffff004d;
+}
+.submenu .menu02 a:hover {
+  background: #FF00ff4d;
+}
+.submenu .menu03 a:hover {
+  background: #00ffff4d;
+}
+
+
+.menu01:hover{color: #ffff0094;}
+.menu02:hover{color: #FF00ff94;}
+.menu03:hover{color: #00ffff94;}
+
+#section0 h1{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 90px;
+    font-weight: 600;
+    line-height: 100px;
+    color: #fff;
+
+    position: relative;
+    top: 220px;
+    left: 200px;
+}
+
+#section0 p{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 20px;
+    font-weight: 200;
+    line-height:30px;
+    color: #fff;
+
+    position: relative;
+    top: 120px;
+    left: 450px;
+    letter-spacing: 1.2px;
+}
+
+#section1 .myVideo{
+    filter: brightness(80%);
+    width: 400px;
+    height: 270px;
+    width: 270px;
+    height: 140px;
+    position: absolute;
+    /* top: -0px;
+    left: 300px; */
+    margin-right: 30px;
+}
+
+.sec2v-01{
+    position: relative;
+    top: 600px;
+    left: 400px;
+}
+
+#s1_content{
+    position: relative;
+    top: -50px;
+    top: 120px;
+    left: 200px;
+    z-index: 10;
+}
+
+#section1 h2{
+    text-align: left;
+
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 100px;
+    color: #fff;
+
+    /* position: relative; */
+    /* top: -270px; */
+    left: 200px;
+    margin-bottom: -20px;
+}
+
+#section1 p{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 52px;
+    color: #fff;
+
+    /* position: relative; */
+    /* top: 30px; */
+    left: 420px;
+    margin-bottom: 25px;
+}
+
+
+
+.sec3v{
+    /* width: 80%; */
+    height: 75%;
+    position: relative;
+    top: 20px;
+    /* z-index: 9999; */
+    
+}
+
+#section3 h2{
+    text-align: left;
+
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 100px;
+    color: #fff;
+
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    margin-bottom: -10px;
+}
+
+#section3 h4{
+    text-align: left;
+
+    font-size: 25px;
+    font-weight: 200;
+    line-height: 35px;
+    color: #fff;
+
+    position: relative;
+    top: 10px;
+    left: 200px;
+}
+#section3{
+    /* background-image: url(../source/img/t_02/4.png); */
+    background-color: #000;
+    background-size: cover;
+    /* background-size: contain; */
+}
+#section3::before{
+    content: "";
+    opacity: 0.7;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #000;
+}
+
+.container {
+	max-width: 100rem;
+    width: 80vw;
+	margin: 0 auto;
+	padding: 0 2rem 2rem;
+
+    position: relative;
+    top: 120px;
+}
+
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	/* Compensate for excess margin on outer gallery flex items */
+	margin: -1rem -1rem;
+}
+
+.gallery-item {
+	/* Minimum width of 24rem and grow to fit available space */
+	flex: 1 0 24rem;
+	/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+	margin: 1rem;
+	/* box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4); */
+	overflow: hidden;
+}
+
+.gallery-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 400ms ease-out;
+}
+
+.gallery-image:hover {
+	transform: scale(1.15);
+}
+
+/*
+
+The following rule will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+
+*/
+
+@supports (display: grid) {
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		grid-gap: 2rem;
+	}
+
+	.gallery,
+	.gallery-item {
+		margin: 0;
+	}
+}
+
+.gallery-item h3{
+    text-align: left;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 60px;
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-left: 15px;
+}
+.gallery-item p{
+    text-align: left;
+
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 28px;
+    color: #fff;
+    /* margin-top: 10px; */
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+
+
+#s4_content{
+    position: relative;
+    top: 200px;
+    /* top: -150px; */
+    left: 200px;
+}
+
+#section4 h2{
+    text-align: left;
+
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 100px;
+    color: #fff;
+
+    /* position: relative; */
+    /* top: -270px; */
+    left: 200px;
+    margin-bottom: -10px;
+}
+
+#section4 p{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 52px;
+    color: #fff;
+
+    /* position: relative; */
+    /* top: 30px; */
+    left: 420px;
+    margin-bottom: 50px;
+}
+#section4{
+    background-image: url(../source/img/t_02/4.png);
+    background-color: #000;
+    background-size: cover;
+}
+#section4::before{
+    content: "";
+    opacity: 0.8;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #000;
+}
+
+#bt{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: white;
+    /* background-color: pink; */
+    position: relative;
+    position: absolute;
+   top: 750px;
+    left: 88%;
+    color: #000;
+    cursor:pointer;
+    z-index: 101;
+}
+
+        #bt h2{
+            margin: auto auto;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
+            font-size: 18px;
             font-weight: 600;
-            font-size: 25px;
+            color: #000;
+            -ms-user-select: none; 
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        
+        .contact{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
             position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            padding: 100px;
+            display:none;
+        }
+        
+        .c_title{
+            font-weight: 100;
+            font-size:  70px;
+            line-height: 140px;
+            text-decoration: none;
+        }
+        h6{
+            font-family: 'Pretendard';
+            font-weight: 100;
+            font-size:  120px;
+            line-height: 160px;
+            cursor: pointer;
+            color: #fff;
             text-align: left;
-            background-color: transparent;
-            letter-spacing :0.5px;
-            
-            margin-top: 25px;
-            margin-left: 30px;
+            position: relative;
+            left: 100px;
+        }
+        .c_content:hover{
+            text-decoration: underline;
+            text-underline-position: under;
+            text-decoration-thickness: 1px;
+            /* box-shadow: inset 0 -1px 0 rgb(255, 255, 255);
+            line-height: 140px; */
         }
     </style>
 </head>
-
 <body>
     <div id="header">
         <h1 class="logo">
             <a href="../index.html">hypergud</a>
         </h1>
+
+        
+
+        <ul id="menu_accordion" class="menu_accordion">
+            <li>
+              <div class="link">WORKS<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li class="menu01" ><a href="./work_u_01_c.html">VR “Ctrl+Z”</a></li>
+                <li class="menu01"><a href="./work_u_02_4.html">Kinetic Media Wall “404:Page not found”</a></li>
+                <li class="menu02"><a href="./work_t_02_n.html">Arduino Interaction "non-human;Gud"</a></li>
+                <li class="menu03"><a href="./work_e_01_n_web.html">CSS Interaction Web "비일상 컬렉션"</a></li>
+                <li class="menu03"><a href="./work_e_02_g_illust.html">Illustration "거드안부"</a></li>
+              </ul>
+            </li>
+          </ul>
     </div>
 
-  <div id="fullpage">
+<div id="fullpage">
     <div class="section " id="section0">
-        <div class="sec0_left">
-            <!-- <div class="gudpic">
-                <img src="../source/img/me.jpg" alt="">
-            </div> -->
+        <div class="intro">
+            <video id="myVideo" loop muted data-autoplay>
+                <source src="../source/vid/touch_02.mp4" type="video/mp4">
+                <!-- <source src="../source/vid/t_02/Skyscrapers - 55933.mp4" type="video/mp4"> -->
+                <!-- <source src="../source/vid/unity_01.mp4" type="video/mp4"> -->
+            </video>
+            <div class="layer">
+                <h1>NON-HUMAN;<br>GUD</h1>
+                <p>Format: PC, Mobile, Arduino board<br>
+                Tools:  TouchDesinger, Arduino <br>
+                Position: 프로젝트 기획, 콘텐츠 디자인, TouchDesigner 개발, Arduino 연결
 
-            <!-- Contenedor -->
-        <ul id="accordion" class="accordion">
-            <li class="open">
-            <div class="link menu01">Unity<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub01">
-                <li><a href="#">VR “Ctrl+Z”</a></li>
-                <li><a href="#">Kinetic Media Wall “404:Page not found”</a></li>
-                <!-- <li><a href="#">AR Namecard "ARTPR"</a></li> -->
-            </ul>
-            </li>
-            <li class="open">
-            <div class="link menu02">TouchDesigner<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub02">
-                <li><a href="#">Mouse Interaction "Trick Or Treat"</a></li>
-                <li><a href="#">Arduino Interaction "non-human;Gud"</a></li>
-            </ul>
-            </li>
-            <li class="open">
-            <div class="link menu03">Etc<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub03">
-                <li><a href="#">CSS Interaction Web "비일상 컬렉션"</a></li>
-                <li><a href="#">Illustration "거드안부"</a></li>
-            </ul>
-            </li>
-        </ul>
-        </div>
-        <div class="sec0_right">
-            <div class="workmedia">
-                <div id="outer">
-                    <video id="myVideo" loop muted data-autoplay style="height: 100%; position: relative;right: 300px; ">
-                        <source src="../source/vid/a2.mp4" type="video/mp4">
-                    </video>
-                </div>
+                </p>
             </div>
-                    
         </div>
-		<div class="layer">
-		</div>
 	</div>
+    <div class="section" id="section1">
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="../source/vid/t_02/Monster - 2588.mp4" type="video/mp4">
+        </video>
+        <!-- <video id="myVideo" loop muted data-autoplay>
+            <source src="../source/vid/t_02/Monster - 2588.mp4" type="video/mp4">
+        </video> -->
+        <div id="s1_content">
+            <h2>Our Goal ?</h2>
+            <p>a2 는 비인간을 ‘의무와 인과를 끊어낸, 원초적인 희로애락을 담당하는 것＇이라 정의하고 <br>
+                SNS 부계정이 비인간 그 자체가 될 수 있다고 생각했습니다.</p>
+            <h2>And We did it !</h2>
+            <p>한 ‘게시물’ 당 직육면체의 공간을 부여한 3D 전시 형태이며<br>
+                게시물에 필요한 소스는 배경 영상, 크로마키 촬영본, 태그 텍스트입니다.<br>
+                체험 시엔 연결 여부에 키네틱 제어장치를 연결합니다.<br>
+            </p>
+            <!-- <video class="myVideo sec2v-01" loop muted data-autoplay>
+                <source src="../source/vid/u_01/u_01_sec2 (1).mp4" type="video/mp4">
+            </video>
+            <video class="myVideo sec2v-02" loop muted data-autoplay>
+                <source src="../source/vid/u_01/u_01_sec2 (2).mp4" type="video/mp4">
+            </video>
+            <video class="myVideo sec2v-03" loop muted data-autoplay>
+                <source src="../source/vid/u_01/u_01_sec2 (1).mp4" type="video/mp4">
+            </video>
+            <video class="myVideo sec2v-04" loop muted data-autoplay>
+                <source src="../source/vid/u_01/u_01_sec2 (2).mp4" type="video/mp4">
+            </video> -->
+        </div>
+        
+    </div>
+    <div class="section" id="section2">
+        <!-- <h2>Video</h2> -->
+        <video controls controlsList="nodownload" class="sec3v">
+            <source src="../source/vid/t_02/mobile.mp4" type="video/mp4">
+        </video>
+        <video controls controlsList="nodownload" class="sec3v">
+            <source src="../source/vid/t_02/pc.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="section" id="section3">
+        <video id="myVideo" loop muted data-autoplay style="z-index: 0;">
+            <source src="../source/vid/t_02/Skyscrapers - 55933.mp4" type="video/mp4">
+        </video>
+        <h2>Contents</h2>
+        <h4>터치디자이너와 웹사이트 간의 연결, 아두이노로 제어합니다.</h4>
+        <div class="container">
+            
+            <div class="gallery">
+        
+                <div class="gallery-item">
+                    <img class="gallery-image" src="../source/img/t_02/m04.png" alt="">
+                </div>
+                
+                <div class="gallery-item">
+                    <img class="gallery-image" src="../source/img/t_02/m01.png" alt="">
+                    
+                </div>
+                
+        
+                <div class="gallery-item">
+                    <img class="gallery-image" src="../source/img/t_02/m02.png" alt="">
+                </div>
+        
+                <div class="gallery-item">
+                    <img class="gallery-image" src="../source/img/t_02/m03.png" alt="">
+                </div>
+        
+        
+            </div>
+            <div class="gallery">
+        
+                <div class="gallery-item">
+                    <h3>01. Locked</h3>
+                    <p>입장 허가를 위한 버튼을 누릅니다.</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <h3> 02. Unlocked</h3>
+                    <p>웹사이트에서 터치디자이너로 값을 보냅니다.</p>
+                </div>
+                <div class="gallery-item">
+                    <h3>03. Enter</h3>
+                    <p>허가 시 입장합니다.</p>
+                </div>
+                <div class="gallery-item">
+                    <h3>04. Play</h3>
+                    <p>키네틱 제어장치로 체험합니다.</p>
+                </div>
+        
+            </div>
+        
+        </div>
+    </div>
+    <div class="section" id="section4">
+        <video id="myVideo" loop muted data-autoplay style="z-index: 0;">
+            <source src="../source/vid/t_02/SNOW3-eye-closed_cut.mp4" type="video/mp4">
+        </video>
+        <div id="s4_content">
+            <h2>NON-HUMAN; GUD</h2>
+            <p>사회적 의무를 떨치고 오로지 원초적인 즐거움만을 담은,<br>
+                현대의 삶을 살면서도 해소가 필요한 개인을 위한 콘텐츠입니다.<br>
+                <br>
+                이 프로젝트는 언택트 시대에 최적화된 온라인 전시를 목적으로 제작되었습니다.<br>
+                실제로 체험할 수 있는 장소가 아니더라도 모바일로, <br>
+                어떤 센서가 제어되는지 확인하며 콘텐츠를 즐길 수 있습니다.
+                
+            </p>
+        </div>
+        
+        <div id="bt" class="contactbt">
+            <h2 class="onbt">CONTACT</h2>
+            <h2 class="offbt" style="position: relative;top:-100px;display: none;">X</h2>
+        </div>
       
-  </div>
+        <div class="contact">
+          <h6 class="c_title" style="cursor:inherit;">Contact me!</h6>
+          <h6 class="c_content" onclick="copyToClipboard('+82 10-9390-5870');">+82 10-9390-5870</h6>
+          <h6 class="c_content" onclick="copyToClipboard('eowk3130@naver.com');">eowk3130@naver.com</h6>
+          <h6 class="c_content" onclick="copyToClipboard('wonesis24@gmail.com');">wonesis24@gmail.com</h6>
+        </div>
+    </div>
+    
+    
+    <div id="bt_a" OnClick="location.href ='./about.html'">
+        <h2>ABOUT</h2>
+    </div>
 
-
-  <!-- <div id="bt" class="contactbt">
-    <h2>CONTACT</h2>
+    
 </div>
 
-<div class="contact">
-  <h6 class="c_title">Contact me!</h6>
-  <h6 class="c_content">+82 10-9390-5870</h6>
-  <h6 class="c_content">eowk3130@naver.com</h6>
-  <h6 class="c_content">wonesis24@gmail.com</h6>
-</div> -->
-
-<div id="bt_p" OnClick="location.href ='./work_main.html'">
-    <h2>WORKS</h2>
-</div>
-
-<div id="bt_a" OnClick="location.href ='./about.html'">
-    <h2>ABOUT</h2>
-</div>
-
-  
-  
-  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-  <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
-  <script type="text/javascript">
-      var myFullpage = new fullpage('#fullpage', {
-          sectionsColor: ['#000000']
-      });
-  </script>
-
-  <script>
+<script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
+<script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/examples.js"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: ['#000', '#000', '#000', '#000', '#000', '#000', '#000'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4th', '5th', '6th'],
+        navigation:true,
+        navigationTooltips: ['Main', 'Goal', 'Video', 'Contents', 'Development', 'End&Contact'],
+        showActiveTooltip: true,
+        menu: '#menu'
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
     $(function() {
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
@@ -133,16 +808,35 @@
 
 		$next.slideToggle();
 		$this.parent().toggleClass('open');
-        // $this.parent().removeClass('open');
 
 		if (!e.data.multiple) {
-			// $el.find('.submenu').not($next).slideUp().parent().toggleClass('open');
-            $el.find('.submenu').not($next).slideDown().parent().toggleClass('open');
+			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
 		};
 	}	
 
-	var accordion = new Accordion($('#accordion'), false);
+	var accordion = new Accordion($('#menu_accordion'), false);
 });
+
+</script>
+<script>
+    $( document ).ready( function() {
+        textchange = false;
+      $( '.contactbt' ).click( function() {
+        $( '.contact' ).slideToggle();
+        if(textchange){
+        textchange = false;
+        $('.onbt').text('CONTACT');
+        }else{
+        textchange = true;
+        $('.onbt').text('CLOSE');
+        }
+
+      } );
+    
+      
+    
+    
+    } );
   </script>
-  </body>
-  </html>
+</body>
+</html>

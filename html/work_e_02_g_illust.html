@@ -1,120 +1,470 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2021 Hypergud Portfolio</title>
-    <!-- about -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2021 Hypergud Portfolio</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="../source/fullPage.js-master/fullPage.js-master/dist/examples.css" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../source/font/Pretendard-1.1.1/web/static/pretendard.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style_work.css">
     <style>
-        h1{
+        *{
             font-family: 'Pretendard';
-            font-weight: 600;
-            font-size: 25px;
-            position: absolute;
-            text-align: left;
-            background-color: transparent;
-            letter-spacing :0.5px;
-            
-            margin-top: 25px;
-            margin-left: 30px;
         }
+
+        #fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    background: rgb(34, 34, 34);
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span{
+    background: rgb(0, 0, 0);
+}
+#fp-nav ul li .fp-tooltip {
+    position: abrgb(0, 0, 0);
+    top: -2px;
+    color: rgb(0, 0, 0);
+}
+
+/* Style for our header texts
+* --------------------------------------- */
+#header h1{
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-size: 25px;
+    position: absolute;
+    text-align: left;
+    background-color: transparent;
+    letter-spacing :0.5px;
+    margin-top: 25px;
+    margin-left: 30px;
+}
+
+#header a{
+    color: rgba(0, 0, 0, 0.8);
+}
+
+     	/* Fixed header and footer.
+	* --------------------------------------- */
+	#header, #footer{
+		position:fixed;
+		/* height: 50px; */
+		display:block;
+		width: 100%;
+		/* background: rgb(255, 255, 255); */
+		z-index:9;
+		text-align:center;
+		/* color: #000000; */
+        /* color: #fff; */
+		/* padding: 20px 0 0 0; */
+	}
+
+	#header{
+		top:0px;
+	}
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section{
+    text-align:center;
+    overflow: hidden;
+}
+
+
+
+/* Layer with position absolute in order to have it over the video
+* --------------------------------------- */
+#section0 .layer{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    left: 0;
+    top: 43%;
+
+    /*
+    * Preventing flicker on some browsers
+    * See http://stackoverflow.com/a/36671466/1081396  or issue #183
+    */
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+/*solves problem with overflowing video in Mac with Chrome */
+#section0{
+    overflow: hidden;
+}
+
+
+/* Bottom menu
+* --------------------------------------- */
+#infoMenu li a {
+    color: rgb(0, 0, 0);
+}
+
+
+#bt_p{
+            /* position: relative; */
+            /* position: fixed;
+            top: 0;
+            left: 200px;
+            margin-top: 27px;
+            margin-left: 30px; */
+
+            cursor:pointer;
+            z-index: 10;
+        }
+
+        #bt_p h2{
+            /* position: fixed; */
+            margin: auto auto;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 23px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        
+.menu_accordion {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    /* right: -1200px; */
+    margin-top: 27px;
+    margin-left: 30px;
+  width: 50%;
+  max-width: 360px;
+  margin: 30px auto 20px;
+  /* background: rgba(0, 0, 0, 0.096); */
+  text-align: left;
+  border-bottom: 2px solid rgba(7, 7, 7, 0.4);
+  /* border-width: 50%; */
+}
+
+/* .accordion:hover{
+      border-bottom: 2px solid rgba(153, 153, 153, 0.4);
+} */
+
+.menu_accordion .link {
+  cursor: pointer;
+  display: block;
+  /* padding: 15px 15px 0px 0px; */
+  padding-bottom: 5px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  /* border-bottom: 1px solid rgba(204, 204, 204, 0.623); */
+  /* border-width: 50%; */
+  position: relative;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+  vertical-align: middle;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.menu_accordion li:last-child .link { border-bottom: 0; }
+
+.menu_accordion li i {
+  position: absolute;
+  top: 16px;
+  top: 6px;
+  left: 12px;
+  font-size: 18px;
+  color: rgba(22, 22, 22, 0.623);
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.menu_accordion li i.fa-chevron-down {
+  right: 5px;
+  top: 3px;
+  left: auto;
+  font-size: 15px;
+}
+
+.menu_accordion li.open{
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding-bottom: 10px;
+}
+
+.menu_accordion li.open i { 
+    color: rgb(0, 0, 0); 
+}
+
+.menu_accordion li.open i.fa-chevron-down {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/**
+ * Submenu
+ -----------------------------*/
+
+
+.submenu {
+  display: none;
+  /* background: #444359; */
+  font-size: 14px;
+}
+
+/* .submenu li { border-bottom: 1px solid #353535; } */
+
+.submenu a {
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  padding: 3px;
+  padding-left: 0px;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.submenu .menu01 a:hover {
+  background: #ffff004d;
+}
+.submenu .menu02 a:hover {
+  background: #FF00ff4d;
+}
+.submenu .menu03 a:hover {
+  background: #00ffff4d;
+}
+
+
+.menu01:hover{color: #ffff0094;}
+.menu02:hover{color: #FF00ff94;}
+.menu03:hover{color: #00ffff94;}
+
+
+#section0 h2{
+    text-align: left;
+
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 100px;
+    color: rgb(0, 0, 0);
+
+    position: relative;
+    top: -10px;
+    left: 200px;
+    margin-bottom: -10px;
+}
+
+        .swiper-container {
+    width:500px;
+    height:320px;
+    border-radius:7px;
+    /* box-shadow:0 0 20px #ccc inset; */
+    /* margin: 20px; */
+    display: inline-block;
+    position:relative;
+    top: 30px;
+    margin-bottom: 40px;
+}
+.swiper-slide img{
+    height:320px;
+}
+.swiper-slide {
+    text-align:center;
+    display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+    align-items:center; /* 위아래 기준 중앙정렬 */
+    justify-content:center; /* 좌우 기준 중앙정렬 */
+}
+
+#section0 h1{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 90px;
+    font-weight: 600;
+    line-height: 100px;
+    color: rgb(0, 0, 0);
+
+    position: relative;
+    top: 220px;
+    left: 200px;
+}
+
+#section0 p{
+    /* position: relative; */
+    text-align: left;
+
+    font-size: 20px;
+    font-weight: 200;
+    line-height:30px;
+    color: rgb(0, 0, 0);
+
+    position: relative;
+    top: 130px;
+    left:  600px;
+    letter-spacing: 1.2px;
+}
+#section0{
+    background-image: url(../source/img/e-02/Artboard\ 2\ -\ 복사본.png);
+    background-size: cover;
+}
     </style>
 </head>
-
 <body>
     <div id="header">
         <h1 class="logo">
             <a href="../index.html">hypergud</a>
         </h1>
+
+        
+
+        <ul id="menu_accordion" class="menu_accordion">
+            <li>
+              <div class="link">WORKS<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li class="menu01" ><a href="./work_u_01_c.html">VR “Ctrl+Z”</a></li>
+                <li class="menu01"><a href="./work_u_02_4.html">Kinetic Media Wall “404:Page not found”</a></li>
+                <li class="menu02"><a href="./work_t_02_n.html">Arduino Interaction "non-human;Gud"</a></li>
+                <li class="menu03"><a href="./work_e_01_n_web.html">CSS Interaction Web "비일상 컬렉션"</a></li>
+                <li class="menu03"><a href="./work_e_02_g_illust.html">Illustration "거드안부"</a></li>
+              </ul>
+            </li>
+          </ul>
     </div>
 
-  <div id="fullpage">
+<div id="fullpage">
     <div class="section " id="section0">
-        <div class="sec0_left">
-            <!-- <div class="gudpic">
-                <img src="../source/img/me.jpg" alt="">
-            </div> -->
+        <div class="layer">
+            <h1>거드안부</h1>
+            <p>Format: Illustration<br>
+                Tools:  Adobe Photoshop<br>
+                Position: 내용 기획, 일러스트
+                
 
-            <!-- Contenedor -->
-        <ul id="accordion" class="accordion">
-            <li class="open">
-            <div class="link menu01">Unity<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub01">
-                <li><a href="#">VR “Ctrl+Z”</a></li>
-                <li><a href="#">Kinetic Media Wall “404:Page not found”</a></li>
-                <!-- <li><a href="#">AR Namecard "ARTPR"</a></li> -->
-            </ul>
-            </li>
-            <li class="open">
-            <div class="link menu02">TouchDesigner<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub02">
-                <li><a href="#">Mouse Interaction "Trick Or Treat"</a></li>
-                <li><a href="#">Arduino Interaction "non-human;Gud"</a></li>
-            </ul>
-            </li>
-            <li class="open">
-            <div class="link menu03">Etc<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu sub03">
-                <li><a href="#">CSS Interaction Web "비일상 컬렉션"</a></li>
-                <li><a href="#">Illustration "거드안부"</a></li>
-            </ul>
-            </li>
-        </ul>
+ </p>
         </div>
-        <div class="sec0_right">
-            <div class="workmedia">
-                <div id="outer">
-                    <video id="myVideo" loop muted data-autoplay style="height: 100%; position: relative;right: 300px; ">
-                        <source src="../source/vid/a2.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-                    
+    </div>
+    <div class="section " id="section1">
+        <!-- <h2>거드안부</h2> -->
+<!-- 구분용 swiper2 추가 -->
+    <div class="swiper-container swiper1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/01-0404/00.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/01-0404/01.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/01-0404/02.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/01-0404/03.png"></div>
         </div>
-		<div class="layer">
-		</div>
-	</div>
-      
-  </div>
 
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
 
-  <!-- <div id="bt" class="contactbt">
-    <h2>CONTACT</h2>
+    <div class="swiper-container swiper2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 1.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 2.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 3.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 4.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 5.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 6.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/02-0411/Artboard 7.png"></div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="swiper-container swiper3">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 1.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 2.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 3.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 4.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 5.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 6.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 7.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 8.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 9.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 10.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/03-0423/Artboard 11.png"></div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
+   
+    <div class="swiper-container swiper4">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 1.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 2.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 3.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 4.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 5.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/04-0502/Artboard 6.png"></div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="swiper-container swiper5">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 1.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 2.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 3.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 4.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 5.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/05-0509/Artboard 6.png"></div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="swiper-container swiper6">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../source/img/e-02/06-0517/Artboard 1.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/06-0517/Artboard 2.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/06-0517/Artboard 3.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/06-0517/Artboard 4.png"></div>
+            <div class="swiper-slide"><img src="../source/img/e-02/06-0517/Artboard 5.png"></div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    
+
 </div>
 
-<div class="contact">
-  <h6 class="c_title">Contact me!</h6>
-  <h6 class="c_content">+82 10-9390-5870</h6>
-  <h6 class="c_content">eowk3130@naver.com</h6>
-  <h6 class="c_content">wonesis24@gmail.com</h6>
-</div> -->
-
-<div id="bt_p" OnClick="location.href ='./work_main.html'">
-    <h2>WORKS</h2>
-</div>
-
-<div id="bt_a" OnClick="location.href ='./about.html'">
-    <h2>ABOUT</h2>
-</div>
-
-  
-  
-  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-  <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
-  <script type="text/javascript">
-      var myFullpage = new fullpage('#fullpage', {
-          sectionsColor: ['#000000']
-      });
-  </script>
-
-  <script>
+<script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/fullpage.js"></script>
+<script type="text/javascript" src="../source/fullPage.js-master/fullPage.js-master/dist/examples.js"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: ['#fff', '#fff', '#000', '#fff'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4th', '5th', '6th'],
+        navigation:true,
+        navigationTooltips: ['Main', 'Contents', 'Video', 'Contents', 'Development', 'End&Contact'],
+        showActiveTooltip: true,
+        menu: '#menu'
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
     $(function() {
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
@@ -133,16 +483,80 @@
 
 		$next.slideToggle();
 		$this.parent().toggleClass('open');
-        // $this.parent().removeClass('open');
 
 		if (!e.data.multiple) {
-			// $el.find('.submenu').not($next).slideUp().parent().toggleClass('open');
-            $el.find('.submenu').not($next).slideDown().parent().toggleClass('open');
+			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
 		};
 	}	
 
-	var accordion = new Accordion($('#accordion'), false);
+	var accordion = new Accordion($('#menu_accordion'), false);
 });
+
+</script>
+<script>
+    $( document ).ready( function() {
+        textchange = false;
+      $( '.contactbt' ).click( function() {
+        $( '.contact' ).slideToggle();
+        if(textchange){
+        textchange = false;
+        $('.onbt').text('CONTACT');
+        }else{
+        textchange = true;
+        $('.onbt').text('CLOSE');
+        }
+
+      } );
+    
+      
+    
+    
+    } );
   </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<script>
+// swiper1
+new Swiper('.swiper1', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+// swiper2
+new Swiper('.swiper2', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+// swiper3
+new Swiper('.swiper3', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+// swiper4
+new Swiper('.swiper4', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+// swiper5
+new Swiper('.swiper5', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+// swiper6
+new Swiper('.swiper6', {
+	loop : true, // 무한 루프 슬라이드, 반복이 되며 슬라이드가 끝이 없다.
+	pagination : {
+		el : '.swiper-pagination',
+	},
+});
+</script>
   </body>
   </html>

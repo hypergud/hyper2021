@@ -44,6 +44,7 @@
                 <div id="outer">
                     <video id="myVideo" loop muted data-autoplay style="height: 107%; position: relative;right: 360px; ">
                         <source src="../source/vid/about-test.mp4" type="video/mp4">
+                        <!-- <source src="../source/vid/about-test.mp4" type="video/mp4"> -->
                     </video>
                 </div>
             </div>
@@ -70,6 +71,18 @@
             <div class="draggable drag07" class="ui-widget-content">
                 <img src="../source/img/png/oculus_right_c.png" />
             </div>
+            <div class="draggable drag08" class="ui-widget-content">
+                <img src="../source/img/png/cz_star.png" />
+            </div>
+            <div class="draggable drag09" class="ui-widget-content">
+                <img src="../source/img/png/ill_01.png" />
+            </div>
+            <!-- <div class="draggable drag10" class="ui-widget-content">
+                <img src="../source/img/png/nhg_01.png" />
+            </div>
+            <div class="draggable drag11" class="ui-widget-content">
+                <img src="../source/img/png/" />
+            </div> -->
                     
         </div>
 		<div class="layer">
@@ -112,6 +125,8 @@
           </table>
     </div>
 </div>
+
+<div style="z-index: 9999;" data-youtube="https://youtu.be/5xgdyUy9rqY">
 <audio id='audio_play' src='../source/audio/test02.mp3'></audio> 
 <audio id='audio_play2' src='../source/audio/test03.mp3'></audio> 
 <script type="text/javascript"> 
@@ -180,14 +195,18 @@ function play02() {
         }else{
         textchange = true;
         $('.onbt').text('CLOSE');
+        // $('.onbt').text('X');
         }
 
       } );
-    
-      
-    
-    
     } );
+  </script>
+  <script src="../js/youtube-background.js"></script>
+  <script>
+      jQuery(document).ready(function(){
+          jQuery('[data-youtube]').youyube_background();
+
+      })
   </script>
   </body>
   </html>

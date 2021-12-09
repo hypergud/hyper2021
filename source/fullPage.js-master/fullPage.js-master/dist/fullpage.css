@@ -170,7 +170,7 @@ html.fp-enabled,
     height: 4px;
     width: 4px;
     border: 0;
-    background: #333;
+    background: rgb(192, 192, 192);
     left: 50%;
     top: 50%;
     margin: -2px 0 0 -2px;
@@ -184,6 +184,7 @@ html.fp-enabled,
     width: 10px;
     height: 10px;
     margin: -5px 0px 0px -5px;
+    background: rgb(226, 226, 226);
 }
 #fp-nav ul li .fp-tooltip {
     position: absolute;
